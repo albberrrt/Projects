@@ -4,21 +4,24 @@
 #include <time.h>
 #include <stdlib.h>
 
+#define SIZE 40
+
 void drawFloors(currentFloor){
-    int FloorsQuantity = 7;
+    int FloorsQuantity = 17;
     
     for(int j = FloorsQuantity; j > 0; j--){
         if(j == currentFloor){
-            printf("|| Andar %d - Você está aqui.\n", currentFloor);
+            printf("|x| Andar %d - Você está aqui.\n", currentFloor);
         } else {
-            printf("|| Andar %d\n", j);
+            printf("| | Andar %d\n", j);
         }
     }
 }
 
 int elevatorRun(floorBetween, currentFloor, direction){
     for(int i = 0; i <= floorBetween; i ++){
-        printf("\n\n\n\n\n\n\n\n\n\n");
+        printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         
         drawFloors(currentFloor);
         
@@ -55,7 +58,9 @@ int upFloor(int currentFloor, int floorBetween) {
 }
 
 void checkCurrentFloor(int currentFloor) {
-    printf("\n\n\n\n\n\n\n\n\n\n");
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    drawFloors(currentFloor);
     printf("\nSeu andar atual é %d.\n", currentFloor);
     sleep(2);
 }
@@ -78,7 +83,8 @@ int main() {
     
     while(running = true){
         
-        printf("\n\n\n\n\n\n\n\n\n\n");
+        printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         drawFloors(currentFloor);
         printf("\n");
         printf("\nOque deseja fazer?\n");
@@ -93,7 +99,7 @@ int main() {
                 printf("\nPara qual andar você deseja ir?\n");
                 printf("Digite: ");
                 scanf("%d", &choiceFloor);
-                while(choiceFloor > 7 || choiceFloor <= 0){
+                while(choiceFloor > 15 || choiceFloor <= 0){
                     printf("\n%d não é um andar selecionável, digite novamente: ");
                     scanf("%d", &choiceFloor);
                 }
