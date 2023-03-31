@@ -1,3 +1,8 @@
+// Nome: Elevator run
+// Objetivo: O objetivo do programa é simular um elevador simples através do console.
+// Desenvolvedor: Albert Smaczylo
+// Criação: 03/03/2023
+
 #include <stdio.h>
 #include <conio.h>
 #include <stdbool.h>
@@ -6,7 +11,81 @@
 
 #define SIZE 40
 
-void drawFloors(currentFloor){
+// Inicialização das funções
+
+void drawFloors(int currentFloor); // Função que desenha os elevadores na tela 
+
+int elevatorRun(int floorBetween, int currentFloor, int direction); // Função que gerencia o funcionamento do elevador quando está mudando de andar 
+
+int downFloor(int currentFloor, int floorBetween); // Função que faz o elevador descer
+
+int upFloor(int currentFloor, int floorBetween); // Função que faz o elevador subir
+
+void checkCurrentFloor(int currentFloor); // Função que checa qual o andar atual do Usuário
+
+int manageElevator(int choiceFloor, int currentFloor); // Função que gerencia o comando que vai dar para o elevador(se vai subir, descer, andares entre andar atual e escolha)
+
+// Função Main
+void main() {
+    int currentFloor = 1;
+    int choiceFloor;
+    int inputChoice;
+    bool running = true;
+    
+    while(running = true){
+        
+        printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        drawFloors(currentFloor);
+        printf("\n");
+        
+        // Escolhas do usuário
+        printf("\nOque deseja fazer?\n");
+        printf("Digite 1 para usar o elevador\n");
+        printf("Digite 2 para checar seu andar atual\n");
+        printf("Digite 3 para sair do programa\n");
+        printf("Digite: ");
+        scanf("%d", &inputChoice);
+        
+        // Switch que controla as ações com base na escolha do usuário
+        switch(inputChoice) {
+            
+            //Case 1: Usar o elevador
+            case 1: 
+                printf("\nPara qual andar você deseja ir?\n");
+                printf("Digite: ");
+                scanf("%d", &choiceFloor);
+                while(choiceFloor > 15 || choiceFloor <= 0){
+                    printf("\n%d não é um andar selecionável, digite novamente: ");
+                    scanf("%d", &choiceFloor);
+                }
+                currentFloor = manageElevator(choiceFloor, currentFloor);
+                
+                break;
+                
+            //Case 2: Checar andar atual    
+            case 2:
+                checkCurrentFloor(currentFloor);
+                break;
+                
+            //Case 3: Sair do programa    
+            case 3:
+                exit(0);
+                break;
+            
+            //Default: Chamado quando um número não relacionado á uma escolha é digitado
+            default:
+                printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+                printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+                drawFloors(currentFloor);
+                printf("\n %d não é uma escolha selecionável.\n", inputChoice);
+                sleep(1);
+        }
+    }
+    return 0;
+} 
+
+void drawFloors(int currentFloor){
     int FloorsQuantity = 17;
     
     for(int j = FloorsQuantity; j > 0; j--){
@@ -18,7 +97,7 @@ void drawFloors(currentFloor){
     }
 }
 
-int elevatorRun(floorBetween, currentFloor, direction){
+int elevatorRun(int floorBetween, int currentFloor, int direction){
     for(int i = 0; i <= floorBetween; i ++){
         printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
@@ -74,47 +153,3 @@ int manageElevator(int choiceFloor, int currentFloor){
     }
     return currentFloor;
 }
-
-int main() {
-    int currentFloor = 1;
-    int choiceFloor;
-    int inputChoice;
-    bool running = true;
-    
-    while(running = true){
-        
-        printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        drawFloors(currentFloor);
-        printf("\n");
-        printf("\nOque deseja fazer?\n");
-        printf("Digite 1 para usar o elevador\n");
-        printf("Digite 2 para checar seu andar atual\n");
-        printf("Digite 3 para sair do programa\n");
-        printf("Digite: ");
-        scanf("%d", &inputChoice);
-        
-        switch(inputChoice) {
-            case 1: 
-                printf("\nPara qual andar você deseja ir?\n");
-                printf("Digite: ");
-                scanf("%d", &choiceFloor);
-                while(choiceFloor > 15 || choiceFloor <= 0){
-                    printf("\n%d não é um andar selecionável, digite novamente: ");
-                    scanf("%d", &choiceFloor);
-                }
-                currentFloor = manageElevator(choiceFloor, currentFloor);
-                
-                break;
-            case 2:
-                checkCurrentFloor(currentFloor);
-                break;
-            case 3:
-                exit(0);
-                break;
-            default:
-                printf("é oq");
-        }
-    }
-    return 0;
-} 
